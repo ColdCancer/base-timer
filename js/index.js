@@ -23,7 +23,7 @@ function Timer() {
         show.innerHTML = time;
     };
 
-    this.stop = function() {
+    this.stop = function(show) {
         this.state = 0;
         show.style.color = "rgb(219, 77, 77)";
         clearInterval(timer.interval);
