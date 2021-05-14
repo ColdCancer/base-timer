@@ -32,15 +32,17 @@ function Timer() {
 
 var show = document.getElementById("show-time");
 var timer = new Timer();
-timer.run_positive(show);
+// timer.run_positive(show);
 
 window.onkeydown = function(event) {
     // alert(event.keyCode);
-    if (event.keyCode == 32) {
+    if (event.keyCode == 32) { // space
         if (timer.state == 1) {
             timer.stop(show);
         } else {
             timer.run_positive(show);
         }
+    } else if (event.keyCode == 16) { // Shift
+
     }
 }
