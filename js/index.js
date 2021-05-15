@@ -66,6 +66,20 @@ window.onkeydown = function(event) {
 }
 
 head.onmousedown = function(event) {
-    var positionX = event.pageX;
-    console.log(positionX);
+    var mouseRelateX = event.pageX - setting.offsetLeft;
+    var mouseRelateY = event.pageY - setting.offsetTop;
+
+    // console.log(mouseRelateX + " - " + mouseRelateY);
+    head.onmousemove = function(event) {
+        var positionX = event.pageX - mouseRelateX;
+        var positionY = event.pageY - mouseRelateY;
+
+        setting.style.left = positionX + "px";
+        setting.style.top = positionY + "px";
+        console.log(positionX + " - " + positionY);
+    }
+}
+
+head.onmouseup = function(event) {
+    head.onmousemove = null;
 }
