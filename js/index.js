@@ -11,6 +11,7 @@ function Timer() {
             this.minute += Math.floor(this.second / 60);
             this.second = this.second % 60;
             this.hour += Math.floor(this.minute / 60);
+            this.minute = this.minute % 60;
             this.show(show);
         }, 1000);
     };
@@ -32,17 +33,39 @@ function Timer() {
 
 var show = document.getElementById("show-time");
 var timer = new Timer();
+var bcakgroundFlag = 0;
 // timer.run_positive(show);
+
+var setting = document.getElementById("box-setting");
+var head = document.getElementById("setting-head");
+var settingFlag = 0;
 
 window.onkeydown = function(event) {
     // alert(event.keyCode);
-    if (event.keyCode == 32) { // space
+    if (event.keyCode == 32) { // Space
         if (timer.state == 1) {
             timer.stop(show);
         } else {
             timer.run_positive(show);
         }
     } else if (event.keyCode == 16) { // Shift
-
+        if (bcakgroundFlag == 0) {
+            document.body.style.backgroundColor = "white";
+        } else {
+            document.body.style.backgroundColor = "rgb(11, 40, 66)";
+        }
+        bcakgroundFlag = 1 - bcakgroundFlag;
+    } else if (event.keyCode == 27) { // Esc
+        if (settingFlag == 0) {
+            setting.style.display = "block";
+        } else {
+            setting.style.display = "none";
+        }
+        settingFlag = 1 - settingFlag;
     }
+}
+
+head.onmousedown = function(event) {
+    var positionX = event.pageX;
+    console.log(positionX);
 }
